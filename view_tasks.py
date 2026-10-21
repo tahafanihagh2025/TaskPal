@@ -74,3 +74,5 @@ def view_task():
         else:
             print(f"Not included, Try again!\n")
             continue
+
+    return True

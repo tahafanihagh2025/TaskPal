@@ -70,7 +70,7 @@ def set_task():
     # input due time validation
     while True:
         try:  
-            due_time = input(f"7. Set a due time (Reminder) for {task_name} (ex. 10:25, 14:30): ").strip()
+            due_time = input(f"7. Set a due time (Reminder) for {task_name} (ex. 10:25, 14:30, 15:00): ").strip()
             y = due_time.split(':')
             task_due_time = datetime.time(int(y[0]), int(y[1]))
         except ValueError as e:

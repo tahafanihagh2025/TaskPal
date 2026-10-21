@@ -66,28 +66,30 @@ def delete_complete_task():
                     my_cur = my_conn.cursor()
 
                     my_cur.execute("""SELECT * FROM Tasks WHERE ID = ?;""", (id_choice,))
-                    task = my_cur.fetchall()[0]
+                    task = my_cur.fetchall()
 
                     # Logging the completed tasks into a csv file
-                    with open("completed_tasks.csv", "a", newline="", encoding="utf-8") as f:
-                        csv_writer = csv.writer(f)
+                    if len(task) != 0:
+                        with open("completed_tasks.csv", "a", newline="", encoding="utf-8") as f:
+                            csv_writer = csv.writer(f)
 
-                        csv_writer.writerow(
-                            [
-                                task[0], task[1], task[2],task[3], task[4], task[5], task[6], task[7]
-                            ]
-                        )
-                        print("")
+                            csv_writer.writerow(
+                                [
+                                    task[0][0], task[0][1], task[0][2],task[0][3], task[0][4], task[0][5], task[0][6], task[0][7]
+                                ]
+                            )
+                            print("")
 
-                    # Deleting a completed task from Database
-                    my_cur.execute("""DELETE FROM Tasks WHERE ID = ?;""", (id_choice,))
-                    
-                    if my_cur.rowcount != 0:
-                        progress_navigation.word_progress(f"Task ({task[0]}: {task[1]}) completed successfully!")
-                        my_conn.commit()
-                        my_conn.close()
-                        os.system("start completed_tasks.csv")
-                        break
+                        # Deleting a completed task from Database
+                        my_cur.execute("""DELETE FROM Tasks WHERE ID = ?;""", (id_choice,))
+                        
+                        if my_cur.rowcount != 0:
+                            progress_navigation.word_progress(f"Task ({task[0][0]}: {task[0][1]}) completed successfully!")
+                            my_conn.commit()
+                            my_conn.close()
+                            os.system("start completed_tasks.csv")
+                            break
                     else:
                         print("No such task available")
-                    break                
+                        print("")
+                        break              

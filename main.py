@@ -1,5 +1,5 @@
-import os, time
-import ui, create_db, add_tasks, delete_complete_tasks, edit_tasks, view_tasks, progress_navigation
+import os, time, dotenv
+import ui, create_db, add_tasks, delete_complete_tasks, edit_tasks, view_tasks, ai_task, progress_navigation
 
 def main():
     """The main function manages the whole program and dependencies."""
@@ -8,6 +8,7 @@ def main():
 
     progress_navigation.brick_progress()
     create_db.create_table()
+    dotenv.load_dotenv()
     
     print("TaskPal Initialized Successfully!\n")
     progress_navigation.general_update()
@@ -44,8 +45,8 @@ def main():
             time.sleep(0.5)
             progress_navigation.word_progress("Edit a Task...")
 
-            # edit_tasks.edit_task()
-
+            edit_tasks.edit_task()
+        
             progress_navigation.arrow_progress()
 
         elif choice == "4":
@@ -59,6 +60,10 @@ def main():
         elif choice == "5":
             time.sleep(0.5)
             progress_navigation.word_progress("AI Assistant...")
+
+            ai_task.ai_prioritize()
+
+            progress_navigation.arrow_progress()
 
         elif choice == "0":
             choice = "0"

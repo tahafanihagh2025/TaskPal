@@ -108,3 +108,19 @@ def csv_practice():
         print(sex_lst.count("Male"))
         print(sex_lst.count("Female"))
         print(len(sex_lst))
+
+
+def order_by_priority():
+    my_conn = sqlite3.connect("taskpal_db.db")
+    my_cur = my_conn.cursor()
+
+    my_cur.execute("""SELECT name, priority, status, estimatedTime FROM Tasks
+                    ORDER BY priority ASC, status DESC, estimatedTime ASC
+    ;""")
+    prioritized = my_cur.fetchall()
+
+    for task in prioritized:
+        print(task)
+
+    my_conn.commit()
+    my_conn.close()
