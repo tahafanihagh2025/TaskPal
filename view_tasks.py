@@ -2,7 +2,9 @@ import sqlite3
 import progress_navigation
 
 def view_task():
-    """The view_task function is in charge of providing the user with their remaining tasks available."""
+    """
+    The view_task function is in charge of providing the user with their remaining tasks available.
+    """
     my_conn = sqlite3.connect("taskpal_db.db")
     my_cur = my_conn.cursor()
 
