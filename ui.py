@@ -4,7 +4,6 @@ from rich.table import Table
 
 console = Console()
 
-
 def show_dashboard():
     console.print(
         Panel(
@@ -21,7 +20,7 @@ def show_dashboard():
     table.add_column("Home Menu")
 
     table.add_row("1", "Add a Task")
-    table.add_row("2", "Complete / Delete a Task")
+    table.add_row("2", "Complete OR Delete a Task")
     table.add_row("3", "Edit a Task")
     table.add_row("4", "View Tasks")
     table.add_row("5", "AI Assistant")
