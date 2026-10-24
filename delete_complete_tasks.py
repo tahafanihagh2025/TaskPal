@@ -2,7 +2,9 @@ import sqlite3, csv, os
 import view_tasks, progress_navigation
 
 def delete_complete_task():
-    """The delete_complete_task function is in charge of either marking a task as completed or deleting a task."""
+    """
+    The delete_complete_task function is in charge of either marking a task as completed or deleting a task.
+    """
 
     # Checking if any new tasks are available or not
     my_conn = sqlite3.connect("taskpal_db.db")
@@ -70,6 +72,16 @@ def delete_complete_task():
 
                     # Logging the completed tasks into a csv file
                     if len(task) != 0:
+                        if not os.path.exists("completed_tasks.csv"):
+                            with open("completed_tasks.csv", "w", newline="", encoding="utf-8") as f:
+                                csv_writer = csv.writer(f)
+
+                                csv_writer.writerow(
+                                    [
+                                        "id", "name", "description", "estimatedTime", "priority", "status", "createdAt", "dueDate"
+                                    ]
+                                )
+
                         with open("completed_tasks.csv", "a", newline="", encoding="utf-8") as f:
                             csv_writer = csv.writer(f)
 
