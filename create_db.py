@@ -1,7 +1,9 @@
 import sqlite3
 
 def create_table():
-    """The create_table function creates a new table called Tasks in a Database called taskpal_db.db"""
+    """
+    The create_table function creates a new table called Tasks in a Database called taskpal_db.db
+    """
     my_conn = sqlite3.connect("taskpal_db.db")
     my_cur = my_conn.cursor()
 
